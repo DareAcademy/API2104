@@ -38,13 +38,21 @@ namespace Clinic2104API.Services
             return patientDTO;
         }
 
-        public List<PatientDTO> Search(string Phone)
+        public List<PatientDTO> Search(string? Phone,string? name)
         {
 
-
-            List<Patient> allpatients = context.patients.Include("country").Where(p => p.Phone == Phone).ToList();
+            IQueryable<Patient> query = context.patients.Include("country").AsQueryable();
+            if (!string.IsNullOrEmpty(name))
+            {
+                query=query.Where(p => p.FName.Contains(name) || p.LName.Contains(name));
+            }
+            if (!string.IsNullOrEmpty(Phone))
+            {
+                query = query.Where(p => p.Phone == Phone);
+            }
+            //List<Patient> allpatients = context.patients.Include("country").Where(p => p.Phone == Phone).ToList();
             List<PatientDTO> patients = new List<PatientDTO>();
-            patients = mapper.Map<List<PatientDTO>>(allpatients);
+            patients = mapper.Map<List<PatientDTO>>(query);
             return patients;
         }
 

@@ -21,5 +21,12 @@ namespace Clinic2104API.data
             optionsBuilder.UseSqlServer(config.GetConnectionString("clinicConnection"));
             base.OnConfiguring(optionsBuilder);
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            //builder.Entity<Country>().HasIndex(x=>x.Name).IsUnique();
+
+            base.OnModelCreating(builder);
+        }
     }
 }

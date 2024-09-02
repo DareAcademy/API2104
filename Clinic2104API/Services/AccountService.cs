@@ -85,16 +85,22 @@ namespace Clinic2104API.Services
 
             foreach (var item in li)
             {
-                
-                userRoles.Add(new UserRoles()
-                {
-                    RoleId = item.Id,
-                    RoleName = item.Name,
-                    IsSelected = false,
-                    UserId = UserId
-                }) ;
-		
-			}
+                UserRoles x = new UserRoles();
+                x.RoleId = item.Id;
+                x.RoleName = item.Name;
+                x.IsSelected = false;
+                x.UserId = UserId;
+
+                userRoles.Add(x);
+                //userRoles.Add(new UserRoles()
+                //{
+                //    RoleId = item.Id,
+                //    RoleName = item.Name,
+                //    IsSelected = false,
+                //    UserId = UserId
+                //}) ;
+
+            }
 
             foreach (var item in userRoles)
             {

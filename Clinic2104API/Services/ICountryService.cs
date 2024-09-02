@@ -9,5 +9,7 @@ namespace Clinic2104API.Services
         List<CountryDTO> LoadAll();
 
         void Delete(int Id);
+
+        CountryDTO LoadByName(string name);
     }
 }

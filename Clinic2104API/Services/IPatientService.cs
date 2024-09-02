@@ -8,7 +8,7 @@ namespace Clinic2104API.Services
 
         List<PatientDTO> LoadAll();
 
-        List<PatientDTO> Search(string Phone);
+        List<PatientDTO> Search(string? Phone, string? name);
 
         PatientDTO Load(int Id);
 

@@ -1,6 +1,7 @@
 ﻿using Clinic2104API.data;
 using Clinic2104API.Model;
 using Clinic2104API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace Clinic2104API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles = "Doctor")]
     public class PatientController : ControllerBase
     {
         IPatientService patientService;
@@ -32,9 +34,9 @@ namespace Clinic2104API.Controllers
 
         [HttpGet]
         [Route("SearchPatient")]
-        public List<PatientDTO> SearchPatient(string phone)
+        public List<PatientDTO> SearchPatient(string? phone,string? name)
         {
-            List<PatientDTO> patients = patientService.Search(phone);
+            List<PatientDTO> patients = patientService.Search(phone, name);
             return patients;
         }
 

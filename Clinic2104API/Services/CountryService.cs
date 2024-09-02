@@ -39,6 +39,13 @@ namespace Clinic2104API.Services
             context.SaveChanges();
         }
 
+        public CountryDTO LoadByName(string name)
+        {
+            Country country = context.countries.Where(c => c.Name == name).FirstOrDefault();
+            CountryDTO countryDTO = mapper.Map<CountryDTO>(country);
+            return countryDTO;
+
+        }
 
     }
 }
